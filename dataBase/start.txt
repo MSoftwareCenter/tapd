@@ -1,0 +1,58 @@
+DELETE FROM `absensi`;
+DELETE FROM usulan;
+DELETE FROM disposisi;
+DELETE FROM notif;
+DELETE FROM notifuser;
+DELETE FROM pembahasan;
+
+DELETE FROM apbdsub1 WHERE noPembahasan1>0 AND perkada1>0 AND date1>2021;
+DELETE FROM apbdsub2 WHERE noPembahasan2>0 AND perkada2>0 AND date2>2021;
+DELETE FROM apbdsub3 WHERE noPembahasan3>0 AND perkada3>0 AND date3>2021;
+DELETE FROM apbdsub4 WHERE noPembahasan4>0 AND perkada4>0 AND date4>2021;
+DELETE FROM apbdsub5 WHERE noPembahasan5>0 AND perkada5>0 AND date5>2021;
+DELETE FROM apbdsub6 WHERE noPembahasan6>0 AND perkada6>0 AND date6>2021;
+DELETE FROM apbdsub7 WHERE noPembahasan7>0 AND perkada7>0 AND date7>2021;
+
+DELETE FROM apbdsub1 WHERE noPembahasan1>0 AND perkada1>0 ;
+DELETE FROM apbdsub2 WHERE noPembahasan2>0 AND perkada2>0 ;
+DELETE FROM apbdsub3 WHERE noPembahasan3>0 AND perkada3>0 ;
+DELETE FROM apbdsub4 WHERE noPembahasan4>0 AND perkada4>0 ;
+DELETE FROM apbdsub5 WHERE noPembahasan5>0 AND perkada5>0 ;
+DELETE FROM apbdsub6 WHERE noPembahasan6>0 AND perkada6>0 ;
+DELETE FROM apbdsub7 WHERE noPembahasan7>0 AND perkada7>0 ;
+
+DELETE FROM apbdsub1 WHERE noPembahasan1>0 AND perkada1>0 ;
+DELETE FROM apbdsub2 WHERE noPembahasan2>0 AND perkada2>0 ;
+DELETE FROM apbdsub3 WHERE noPembahasan3>0 AND perkada3>0 ;
+DELETE FROM apbdsub4 WHERE noPembahasan4>0 AND perkada4>0 ;
+DELETE FROM apbdsub5 WHERE noPembahasan5>0 AND perkada5>0 ;
+DELETE FROM apbdsub6 WHERE noPembahasan6>0 AND perkada6>0 ;
+DELETE FROM apbdsub7 WHERE noPembahasan7>0 AND perkada7>0 ;
+
+DELETE FROM apbdsub1 WHERE noPembahasan1=0 AND date1>2021;
+DELETE FROM apbdsub2 WHERE noPembahasan2=0 AND date2>2021;
+DELETE FROM apbdsub3 WHERE noPembahasan3=0 AND date3>2021;
+DELETE FROM apbdsub4 WHERE noPembahasan4=0 AND date4>2021;
+DELETE FROM apbdsub5 WHERE noPembahasan5=0 AND date5>2021;
+DELETE FROM apbdsub6 WHERE noPembahasan6=0 AND date6>2021;
+DELETE FROM apbdsub7 WHERE noPembahasan7=0 AND date7>2021;
+
+DELETE FROM apbdsub1 WHERE noPembahasan1=0 AND perkada1>1 ;
+DELETE FROM apbdsub2 WHERE noPembahasan2=0 AND perkada2>1 ;
+DELETE FROM apbdsub3 WHERE noPembahasan3=0 AND perkada3>1 ;
+DELETE FROM apbdsub4 WHERE noPembahasan4=0 AND perkada4>1 ;
+DELETE FROM apbdsub5 WHERE noPembahasan5=0 AND perkada5>1 ;
+DELETE FROM apbdsub6 WHERE noPembahasan6=0 AND perkada6>1 ;
+DELETE FROM apbdsub7 WHERE noPembahasan7=0 AND perkada7>1 ;
+
+DELETE FROM dsub WHERE taSub!=2021 ;
+DELETE FROM dkegiatan WHERE taKegiatan!=2021 ;
+DELETE FROM dprogram WHERE taProgram!=2021 ;
+DELETE FROM dbidang WHERE taBidang!=2021 ;
+DELETE FROM durusan WHERE taUrusan!=2021 ;
+
+DELETE FROM dsub WHERE taSub=2021 and perkadaS>1;
+DELETE FROM dkegiatan WHERE taKegiatan=2021 and perkadaK>1;
+DELETE FROM dprogram WHERE taProgram=2021 and perkadaP>1;
+DELETE FROM dbidang WHERE taBidang=2021 and perkadaB>1;
+DELETE FROM durusan WHERE taUrusan=2021 and perkadaU>1;

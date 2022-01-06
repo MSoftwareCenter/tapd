@@ -1,0 +1,114 @@
+    sub 1
+paddSub1('4','PENDAPATAN DAERAH','942523774656','0','2021');
+paddSub1('5','BELANJA DAERAH','957523774656','0','2021');
+paddSub1('6','PEMBIAYAAN DAERAH','15000000000','0','2021');
+
+    sub 2
+paddSub2('4','4.1','PENDAPATAN ASLI DAERAH (PAD)','93074478700','0','2021');
+paddSub2('4','4.2','PENDAPATAN TRANSFER','830793111249','0','2021');
+paddSub2('4','4.3','LAIN-LAIN PENDAPATAN DAERAH YANG SAH','18656184707','0','2021');
+
+paddSub2('5','5.1','BELANJA OPERASI','709578861324','0','2021');
+paddSub2('5','5.2','BELANJA MODAL','123549446432','0','2021');
+paddSub2('5','5.3','BELANJA TIDAK TERDUGA','5000000000','0','2021');
+paddSub2('5','5.4','BELANJA TRANSFER','119395466900','0','2021');
+
+paddSub2('6','6.1','PENERIMAAN PEMBIAYAAN','15000000000','0','2021');
+paddSub2('6','6.2','PENGELUARAN PEMBIAYAAN','0','0','2021');
+
+
+    sub 3
+paddSub3('4.1','4.1.01','Pajak Daerah','38450000000','0','2021');
+paddSub3('4.1','4.1.02','Retribusi Daerah','9943000000','0','2021');
+paddSub3('4.1','4.1.03','Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan','5870000000','0','2021');
+paddSub3('4.1','4.1.04','Lain-lain PAD yang Sah','38811478700','0','2021');
+paddSub3('4.2','4.2.01','Pendapatan Transfer Pemerintah Pusat','772126200000','0','2021');
+paddSub3('4.2','4.2.02','Pendapatan Transfer Antar Daerah','58666911249','0','2021');
+paddSub3('4.3','4.3.01','Pendapatan Hibah','18656184707','0','2021');
+paddSub3('5.1','5.1.01','Belanja Pegawai','358830382604','0','2021');
+paddSub3('5.1','5.1.02','Belanja Barang dan Jasa','303824011840','0','2021');
+paddSub3('5.1','5.1.05','Belanja Hibah','34018216880','0','2021');
+paddSub3('5.1','5.1.06','Belanja Bantuan Sosial','12906250000','0','2021');
+paddSub3('5.2','5.2.01','Belanja Modal Tanah','1650000000','0','2021');
+paddSub3('5.2','5.2.02','Belanja Modal Peralatan dan Mesin','20420295102','0','2021');
+paddSub3('5.2','5.2.03','Belanja Modal Gedung dan Bangunan','29473905860','0','2021');
+paddSub3('5.2','5.2.04','Belanja Modal Jalan, Jaringan, dan Irigasi','70043572220','0','2021');
+paddSub3('5.2','5.2.05','Belanja Modal Aset Tetap Lainnya','1961673250','0','2021');
+paddSub3('5.3','5.3.01','Belanja Tidak Terduga','5000000000','0','2021');
+paddSub3('5.4','5.4.01','Belanja Bagi Hasil','4839300000','0','2021');
+paddSub3('5.4','5.4.02','Belanja Bantuan Keuangan','114556166900','0','2021');
+paddSub3('6.1','6.1.01','Sisa Lebih Perhitungan Anggaran Tahun Sebelumnya','15000000000','0','2021');
+paddSub3('6.2','6.2.02','Penyertaan Modal Daerah','0','0','2021');
+
+
+    sub 4
+paddSub4('4.1.01','4.1.01.06','Pajak Hotel','240000000','0','2021');
+paddSub4('4.1.01','4.1.01.07','Pajak Restoran','12000000000','0','2021');
+paddSub4('4.1.01','4.1.01.08','Pajak Hiburan','10000000','0','2021');
+paddSub4('4.1.01','4.1.01.09','Pajak Reklame','150000000','0','2021');
+paddSub4('4.1.01','4.1.01.10','Pajak Penerangan Jalan','16500000000','0','2021');
+paddSub4('4.1.01','4.1.01.11','Pajak Parkir','50000000','0','2021');
+paddSub4('4.1.01','4.1.01.12','Pajak Air Tanah','3000000000','0','2021');
+paddSub4('4.1.01','4.1.01.14','Pajak Mineral Bukan Logam dan Batuan','4000000000','0','2021');
+paddSub4('4.1.01','4.1.01.15','Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2)','1500000000','0','2021');
+paddSub4('4.1.01','4.1.01.16','Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)','1000000000','0','2021');
+paddSub4('4.1.02','4.1.02.01','Retribusi Jasa Umum','7068000000','0','2021');
+paddSub4('4.1.02','4.1.02.02','Retribusi Jasa Usaha','2195000000','0','2021');
+paddSub4('4.1.02','4.1.02.03','Retribusi Perizinan Tertentu','680000000','0','2021');
+paddSub4('4.1.03','4.1.03.02','Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD','5870000000','0','2021');
+paddSub4('4.1.04','4.1.04.05','Jasa Giro','7150000000','0','2021');
+paddSub4('4.1.04','4.1.04.07','Pendapatan Bunga','5000000000','0','2021');
+paddSub4('4.1.04','4.1.04.08','Penerimaan atas Tuntutan Ganti Kerugian Keuangan Daerah','1000000000','0','2021');
+paddSub4('4.1.04','4.1.04.16','Pendapatan BLUD','17500000000','0','2021');
+paddSub4('4.1.04','4.1.04.18','Pendapatan Dana Kapitasi Jaminan Kesehatan Nasional (JKN) pada Fasilitas Kesehatan Tingkat Pertama (FKTP)','8161478700','0','2021');
+paddSub4('4.2.01','4.2.01.01','Dana Perimbangan','683480304000','0','2021');
+paddSub4('4.2.01','4.2.01.02','Dana Insentif Daerah (DID)','25054942000','0','2021');
+paddSub4('4.2.01','4.2.01.05','Dana Desa','63590954000','0','2021');
+paddSub4('4.2.02','4.2.02.01','Pendapatan Bagi Hasil','58666911249','0','2021');
+paddSub4('4.3.01','4.3.01.01','Pendapatan Hibah dari Pemerintah Pusat','17999684707','0','2021');
+paddSub4('4.3.01','4.3.01.05','Sumbangan Pihak Ketiga/Sejenis','656500000','0','2021');
+
+// sub 5
+paddSub5('4.1.01.06','4.1.01.06.01','Pajak Hotel','240000000','0','2021');
+paddSub5('4.1.01.07','4.1.01.07.01','Pajak Restoran dan Sejenisnya','12000000000','0','2021');
+paddSub5('4.1.01.08','4.1.01.08.05','Pajak Diskotik, Karaoke, Klub Malam, dan Sejenisnya','10000000','0','2021');
+paddSub5('4.1.01.09','4.1.01.09.01','Pajak Reklame Papan/Billboard/Videotron/ Megatron','150000000','0','2021');
+paddSub5('4.1.01.10','4.1.01.10.02','Pajak Penerangan Jalan Sumber Lain','16500000000','0','2021');
+paddSub5('4.1.01.11','4.1.01.11.01','Pajak Parkir','50000000','0','2021');
+paddSub5('4.1.01.12','4.1.01.12.01','Pajak Air Tanah','3000000000','0','2021');
+paddSub5('4.1.01.14','4.1.01.14.37','Pajak Mineral bukan Logam dan Batuan Lainnya','4000000000','0','2021');
+paddSub5('4.1.01.15','4.1.01.15.01','PBBP2','1500000000','0','2021');
+paddSub5('4.1.01.16','4.1.01.16.01','BPHTB-Pemindahan Hak','1000000000','0','2021');
+paddSub5('4.1.02.01','4.1.02.01.01','Retribusi Pelayanan Kesehatan','6209000000','0','2021');
+paddSub5('4.1.02.01','4.1.02.01.04','Retribusi Pelayanan Parkir di Tepi Jalan Umum','50000000','0','2021');
+paddSub5('4.1.02.01','4.1.02.01.06','Retribusi Pengujian Kendaraan Bermotor','204000000','0','2021');
+paddSub5('4.1.02.01','4.1.02.01.11','Retribusi Pelayanan Tera/Tera Ulang','5000000','0','2021');
+paddSub5('4.1.02.01','4.1.02.01.13','Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi','600000000','0','2021');
+paddSub5('4.1.02.02','4.1.02.02.01','Retribusi Pemakaian Kekayaan Daerah','1100000000','0','2021');
+paddSub5('4.1.02.02','4.1.02.02.02','Retribusi Pasar Grosir dan/atau Pertokoan','600000000','0','2021');
+paddSub5('4.1.02.02','4.1.02.02.07','Retribusi Rumah Potong Hewan','100000000','0','2021');
+paddSub5('4.1.02.02','4.1.02.02.08','Retribusi Pelayanan Kepelabuhanan','20000000','0','2021');
+paddSub5('4.1.02.02','4.1.02.02.09','Retribusi Tempat Rekreasi dan Olahraga','50000000','0','2021');
+paddSub5('4.1.02.02','4.1.02.02.11','Retribusi Penjualan Produksi Usaha Daerah','325000000','0','2021');
+paddSub5('4.1.02.03','4.1.02.03.01','Retribusi Izin Mendirikan Bangunan','200000000','0','2021');
+paddSub5('4.1.02.03','4.1.02.03.03','Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum','5000000','0','2021');
+paddSub5('4.1.02.03','4.1.02.03.05','Retribusi Pengendalian Lalu Lintas','275000000','0','2021');
+paddSub5('4.1.02.03','4.1.02.03.06','Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA)','200000000','0','2021');
+paddSub5('4.1.03.02','4.1.03.02.01','Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD','5870000000','0','2021');
+paddSub5('4.1.04.05','4.1.04.05.01','Jasa Giro pada Kas Daerah','7000000000','0','2021');
+paddSub5('4.1.04.05','4.1.04.05.02','Jasa Giro pada Kas di Bendahara','150000000','0','2021');
+paddSub5('4.1.04.07','4.1.04.07.01','Pendapatan Bunga atas Penempatan Uang Pemerintah Daerah','5000000000','0','2021');
+paddSub5('4.1.04.08','4.1.04.08.02','Tuntutan Ganti Kerugian Daerah terhadap Pegawai Negeri Bukan Bendahara atau Pejabat Lain','1000000000','0','2021');
+paddSub5('4.1.04.16','4.1.04.16.01','Pendapatan BLUD (JKN RSUD)','17500000000','0','2021');
+paddSub5('4.1.04.18','4.1.04.18.01','Pendapatan Dana Kapitasi JKN pada FKTP (DIKES)','8161478700','0','2021');
+paddSub5('4.2.01.01','4.2.01.01.01','Dana Transfer Umum-Dana Bagi Hasil (DBH)','126719001000','0','2021');
+paddSub5('4.2.01.01','4.2.01.01.02','Dana Transfer Umum-Dana Alokasi Umum (DAU)','382933128000','0','2021');
+paddSub5('4.2.01.01','4.2.01.01.03','Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik','111064795000','0','2021');
+paddSub5('4.2.01.01','4.2.01.01.04','Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik','62763380000','0','2021');
+paddSub5('4.2.01.02','4.2.01.02.01','DID','25054942000','0','2021');
+paddSub5('4.2.01.05','4.2.01.05.01','Dana Desa','63590954000','0','2021');
+paddSub5('4.2.02.01','4.2.02.01.01','Pendapatan Bagi Hasil Pajak','58666911249','0','2021');
+paddSub5('4.3.01.01','4.3.01.01.01','Pendapatan Hibah dari Pemerintah Pusat','17999684707','0','2021');
+paddSub5('4.3.01.05','4.3.01.05.01','Sumbangan Pihak Ketiga/Sejenis','656500000','0','2021');
+
+

@@ -1,0 +1,64 @@
+INSERT INTO apbdsub1(kdSub1, nmSub1, pagu1, selected1, date1,noPembahasan1,perkada1)
+                (   select 
+                        kdSub1, nmSub1, pagu1, selected1,date1,'2','1'
+                    from apbdsub1 
+                    where noPembahasan1='1' 
+                        and perkada1='1'
+                        and date1='2021'
+                );
+
+                INSERT INTO apbdsub2 (kdSub1, kdSub2, nmSub2, pagu2, selected2, date2, noPembahasan2,perkada2)
+                (   select 
+                        kdSub1, kdSub2, nmSub2, pagu2, selected2, date2,'2','1'
+                    from apbdsub2 
+                    where noPembahasan2='1' 
+                        and perkada2='1'
+                        and date2='2021'
+                );
+
+                INSERT INTO apbdsub3(kdSub2, kdSub3, nmSub3, pagu3, selected3, date3,noPembahasan3,perkada3)
+                (   select 
+                        kdSub2, kdSub3, nmSub3, pagu3, selected3, date3,'2','1'
+                    from apbdsub3 
+                    where noPembahasan3='1' 
+                        and perkada3='1'
+                        and date3='2021'
+                );
+
+                INSERT INTO apbdsub4(kdSub3, kdSub4, nmSub4, pagu4, selected4, date4,noPembahasan4,perkada4)
+                (   select 
+                        kdSub3, kdSub4, nmSub4, pagu4, selected4, date4,'2','1'
+                    from apbdsub4
+                    where noPembahasan4='1' 
+                    and perkada4='1'
+                    and date4='2021'
+                );
+
+                INSERT INTO apbdsub5(kdSub4, kdSub5, nmSub5, pagu5, selected5, date5,noPembahasan5,perkada5)
+                (   select 
+                        kdSub4, kdSub5, nmSub5, pagu5, selected5, date5,'2','1'
+                    from apbdsub5
+                    where noPembahasan5='1' 
+                        and perkada5='1'
+                        and date5='2021'
+                );
+
+                INSERT INTO apbdsub6(kdSub5, kdSub6, nmSub6, pagu6, selected6, date6,noPembahasan6,perkada6)
+                (   select 
+                        kdSub5, kdSub6, nmSub6, pagu6, selected6, date6,'2','1'
+                    from apbdsub6
+                    where noPembahasan6='1' 
+                        and perkada6='1'
+                        and date6='2021'
+                );
+
+                INSERT INTO apbdsub7(kdSub6, kdSub7, nmSub7, pagu7, selected7, date7,noPembahasan7,perkada7)
+                (   select 
+                        kdSub6, kdSub7, nmSub7, pagu7, selected7, date7,'2','1'
+                    from apbdsub7
+                    where noPembahasan7='1' 
+                        and perkada7='1'
+                        and date7='2021'
+                );
+
+                
