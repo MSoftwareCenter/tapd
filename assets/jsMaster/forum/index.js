@@ -1025,7 +1025,7 @@ function setTabelStruktur() {
                 paguPendapanx=v.pagu11;
             }
 
-            
+            dpersen=_hitungPersenStruktur(v.pagu1,v.pagu11);
             
             // _log(dpersen);
             // _.dusulan[i].subSelected=v.nmSub1;

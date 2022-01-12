@@ -5,7 +5,8 @@ function _onload(data){
     _.perkada=data.perkada;
     
     // console.log(data.ddisposisi);
-    
+    _.xxx=data.xxx;
+
     _.dstatus=data.dstatus;
     _.dlaporan=data.dlaporan;    
     _.perkadaFinal=data.perkadaFinal;
@@ -516,7 +517,7 @@ function setTabelStruktur() {
                 paguPendapanx=v.pagu11;
             }
 
-            
+            dpersen=_hitungPersenStruktur(v.pagu1,v.pagu11);
             
             // _log(dpersen);
             // _.dusulan[i].subSelected=v.nmSub1;
@@ -755,7 +756,8 @@ function refreshData() {
         tahun:$('#ptahun').val(),
         noPembahasan:$('#ppembahasan').val(),
         pembahasanPrev:$('#ppembahasan1').val()
-    })));
+        }))+"/"+_.xxx
+    );
 }
 function _fstatus() {
     $('#tabelShow').html(setTabel());
