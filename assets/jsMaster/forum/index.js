@@ -7,7 +7,10 @@ function _onload(data){
     _.dusulan   =data.dusulan;
 
     _.dstatus   =data.dstatus;
-    _.dstatusx   =data.dstatus;
+    _.dstatusx  =data.dstatus;
+    
+    _.dPendanaan=data.dPendanaan;
+    _.dPendanaanx=data.dPendanaan;
 
     _.setInput=0;
 
@@ -17,12 +20,24 @@ function _onload(data){
     _.perkada       =data.perkada;
     _.tahun=data.tahun;
 
+
+    paguPembiayaan1=0;
+    paguPembiayaan1x=0;
+    paguPembiayaan2=0;
+    paguPembiayaan2x=0;
+    paguBelanja=0;
+    paguBelanjax=0;
+    paguPendapan=0;
+    paguPendapanx=0;
+
     // _.indT=_checkIndex(_.ptahun,_.tahun);
     // _.indP=_checkIndex(_.ptahun[_.indT].perkada,_.perkada);
     _.indT=0;
     _.indP=0;
 
-   
+    // untuk struktur 
+   _pendapanDaerah=0;
+   _penerimaanPembiayaan=0;
 
     _.progres=Number(data.progres);
     _.finals=Number(data.finals);
@@ -71,6 +86,7 @@ function _onload(data){
         form:_form()
     });
     
+
     navBar.menu[5].menu[0].active="active";
     // navBar.menu[1].menu[0].subMenu[2].status="active";
 
@@ -96,8 +112,13 @@ function _onload(data){
     _startTabel("tpendapatan");
     _startTabel("tbelanja");
     _startTabel("tpembiayaan");
-    _startTabel("tabelStruktur");
-    
+    // _startTabel("tabelStruktur");
+    _responStruktur(null);
+
+    // console.log(_pendapanDaerah);
+    // set total awal distruktur 
+    $('#tspendapatan').html("<b>Rp. "+_pendapanDaerah+"</b>");
+    $('#tspembiayaan').html("<b>Rp. "+_penerimaanPembiayaan+"</b>");
 
     // _startTabel("tabelBidang");
     // $('.dataTables_filter').css({'float':'right'});
@@ -330,7 +351,7 @@ function _nextPembahasaned(ind){
         perkada :_.pembahasan[ind].perkada,
         no      :_.pembahasan[ind].noPembahasan
     }
-    if(_file.data.length==0){return _toast({isi:msg.add+" File Undangan TAPD"})};
+    // if(_file.data.length==0){return _toast({isi:msg.add+" File Undangan TAPD"})};
     _postFile("Proses/setNextPembahasan",param,_file.data).then(res=>{
         res=JSON.parse(res);
         if(res.exec){
@@ -689,8 +710,27 @@ function _formPembiayaan(){
 function _formStruktur(){
     return `
         <div id='tabelStrukturShow' style="margin: auto;">`
-            +setTabelStruktur()
-        +`</div>`;
+        
+        +`</div>
+        <hr>
+        <b>
+        `+_sejajar({
+            data:[{
+                isi:_inpSejajar({
+                    color:"black",
+                    judul:"TOTAL PENDAPATAN",
+                    isi:_span({text:"<b>Rp. "+_$(_pendapanDaerah)+"</b>",id:"tspendapatan"})
+                })
+            },{
+                isi:_inpSejajar({
+                    color:"black",
+                    judul:"TOTAL PENERIMA PEMBIAYAAN",
+                    isi:_span({text:"<b>Rp. "+_$(_penerimaanPembiayaan)+"</b>",id:"tspembiayaan"})
+                })
+            }]
+        })+
+        `</b>
+        <hr>`;
 }
 
 
@@ -715,6 +755,7 @@ function setTabelAll(data,keyCode) {
                     <th colspan=4 style="text-align:center;">Forum TAPD</th>
 
                     <th rowspan=2>Status</th>
+                    <th rowspan=2>Status Pendanaan</th>
                     <th rowspan=2>Keterangan</th>
                     <th rowspan=2>Action</th>
                 </tr>
@@ -741,7 +782,7 @@ function setTabelAll(data,keyCode) {
     fkdSub6=undefined;
     fkdSub7=undefined;
     fkdEnd=undefined;
-    fminwidth="100px";
+    fminwidth="120px";
     data.forEach((v,i) => {
         if(v.satx==undefined || v.satx.length==0){
             v.satx=v.sat;
@@ -751,6 +792,14 @@ function setTabelAll(data,keyCode) {
             ftampStatus[i].selected=0;
             if(v.keterangan.length!=0 && v1.value==v.keterangan){
                 ftampStatus[i].selected=1;
+            }
+        });
+
+        ftampPendanaan=_.dPendanaan;
+        _.dPendanaan.forEach((v1,i) => {
+            ftampPendanaan[i].selected=0;
+            if(v.statusPendanaan.length!=0 && v1.value==v.statusPendanaan){
+                ftampPendanaan[i].selected=1;
             }
         });
         
@@ -792,10 +841,19 @@ function setTabelAll(data,keyCode) {
                 <td id="jumlah`+keyCode+``+i+`" style="min-width:`+fminwidth+`;">
                     `+_$((parseFloat(v.nilaix)*parseFloat(v.volx)).toFixed(2))+`
                 </td>
+                
                 <td style="min-width:`+fminwidth+`;" id="status`+keyCode+``+i+`">
                     <select id="pstatus`+keyCode+``+i+`" class="btn text-light bg-dark  form-control">
                         `+_inpComboBox({
                             data:ftampStatus,
+                            inSelect:"Bagus H"
+                        })+`
+                    </select>
+                </td>
+                <td style="min-width:`+fminwidth+`;" id="status`+keyCode+``+i+`">
+                    <select id="ppendanaan`+keyCode+``+i+`" class="btn text-light bg-dark  form-control">
+                        `+_inpComboBox({
+                            data:ftampPendanaan,
                             inSelect:"Bagus H"
                         })+`
                     </select>
@@ -937,16 +995,39 @@ function setTabelStruktur() {
     fkdSub6=undefined;
     fkdSub7=undefined;
     fkdEnd=undefined;
-    _.dall.forEach((v,i) => {
 
+
+    _.dall.forEach((v,i) => {
         if(fkdSub1!=v.kdSub1 && v.kdSub1!=null){
             fkdSub1=v.kdSub1;
             fkdEnd=v.kdSub1;
-            console.log(v);
+            // console.log(v);
             
-            _log(v.pagu1,v.pagu11);
-            dpersen=_hitungPersenStruktur(v.pagu1,v.pagu11);
-            _log(dpersen);
+            // _log(v.pagu1,v.pagu11);
+            // ftotalxx=v.pagu1;
+            fid="";
+            fidx="";
+            fnilaix="";
+            fpersenx="";
+
+            fsurplus=false;
+            if(v.nmSub1=="PEMBIAYAAN DAERAH"){
+                fid=`id="pagu1"`;
+                fidx=`id="pagu11"`;
+                fnilaix=`id="nilai1"`;
+                fpersenx=`id="persen1"`;
+                fsurplus=true;
+            }else if(v.nmSub1=="BELANJA DAERAH"){
+                paguBelanja=v.pagu1;
+                paguBelanjax=v.pagu11;
+            }else if(v.nmSub1=="PENDAPATAN DAERAH"){
+                paguPendapan=v.pagu1;
+                paguPendapanx=v.pagu11;
+            }
+
+            
+            
+            // _log(dpersen);
             // _.dusulan[i].subSelected=v.nmSub1;
             fstyle="";
             if(v.selected1==1 && v.pagu1!=v.pagu11){
@@ -956,21 +1037,55 @@ function setTabelStruktur() {
                     fstyle="background-color: #8d0909;color: #fff;";
                 }
             }
+
+
+
+            if(fsurplus){
+                tsurplus    =paguPendapan-paguBelanja;
+                tsurplusx   =paguPendapanx-paguBelanjax;
+                dpersen=_hitungPersenStruktur(tsurplus,tsurplusx);
+                fdata+=`
+                    <tr style="padding:5px; background:yellow;">
+                        <td><p style="display:none;">`+v.kdSub1+`</p></td>
+                        <td>TOTAL SURPLUS/(DEFISIT)</td>
+                        <td >`+_$(tsurplus)+`</td>
+                        <td >`+_$(tsurplusx)+`</td>
+                        <td >`+dpersen.nilai+`</td>
+                        <td >`+dpersen.persen+`</td>
+                    </tr>`;
+            }
+            dpersen=_hitungPersenStruktur(v.pagu1,v.pagu11);
             fdata+=`
             <tr style="padding:5px; `+fstyle+`">
                 <td>`+v.kdSub1+`</td>
                 <td>`+v.nmSub1+`</td>
-                <td>`+_$(v.pagu1)+`</td>
-                <td>`+_$(v.pagu11)+`</td>
-                <td>`+dpersen.nilai+`</td>
-                <td>`+dpersen.persen+`</td>
+                <td `+fid+`>`+_$(v.pagu1)+`</td>
+                <td `+fidx+`>`+_$(v.pagu11)+`</td>
+                <td `+fnilaix+`>`+dpersen.nilai+`</td>
+                <td `+fpersenx+`>`+dpersen.persen+`</td>
             </tr>`;
+
+            // total struktur
+            if(v.kdSub1=='4'){
+                _pendapanDaerah=dpersen.nilai;
+            }
         }
         if(fkdSub2!=v.kdSub2 && v.kdSub2!=null){
             fkdSub2=v.kdSub2;
             fkdEnd=v.kdSub2;
             dpersen=_hitungPersenStruktur(v.pagu2,v.pagu21);
             // _.dusulan[i].subSelected=v.nmSub2;
+
+            
+            if(v.nmSub2=="PENERIMAAN PEMBIAYAAN"){
+                paguPembiayaan1=v.pagu2;
+                paguPembiayaan1x=v.pagu21;
+            }
+            if(v.nmSub2=="PENGELUARAN PEMBIAYAAN"){
+                paguPembiayaan2=v.pagu2;
+                paguPembiayaan2x=v.pagu21;
+            }
+
             fstyle="";
             if(v.selected2==1 && v.pagu2!=v.pagu21){
                 if(dpersen.next){
@@ -988,6 +1103,10 @@ function setTabelStruktur() {
                 <td>`+dpersen.nilai+`</td>
                 <td>`+dpersen.persen+`</td>
             </tr>`;
+
+            if(v.kdSub1=='6.1'){
+                _penerimaanPembiayaan=dpersen.nilai;
+            }
         }
         if(fkdSub3!=v.kdSub3 && v.kdSub3!=null){
             fkdSub3=v.kdSub3;
@@ -1103,6 +1222,34 @@ function setTabelStruktur() {
                 <td>`+dpersen.nilai+`</td>
                 <td>`+dpersen.persen+`</td>
             </tr>`;
+        }
+
+        if(i==_.dall.length-1){
+            fdata+=`
+                <tr style="padding:5px; background:yellow;">
+                    <td><p style="display:none;">8</p></td>
+                    <td>PEMBIAYAAN NETTO</td>
+                    <td id="npagu1"></td>
+                    <td id="npagu11"></td>
+                    <td id="nnilai1"></td>
+                    <td id="npersen1"></td>
+                </tr>
+                <tr style="padding:5px; background:yellow;">
+                    <td><p style="display:none;">9</p></td>
+                    <td>Sisa Lebih Pembiayaan Anggaran Daerah Tahun Berkenaan</td>
+                    <td id="spagu1"></td>
+                    <td id="spagu11"></td>
+                    <td id="snilai1"></td>
+                    <td id="spersen1"></td>
+                </tr>
+                <tr style="padding:5px; background:yellow;">
+                    <td><p style="display:none;">91</p></td>
+                    <td>TOTAL APBD</td>
+                    <td id="tpagu1"></td>
+                    <td id="tpagu11"></td>
+                    <td id="tnilai1"></td>
+                    <td id="tpersen1"></td>
+                </tr>`;
         }
         no++;
     }); 
@@ -1247,6 +1394,8 @@ function _savePendapataned(ind){
     param.nilaix        =_.dpendapatan[ind].nilaix;
     param.total         =_.dpendapatan[ind].totalTam;
     param.status        =$('#pstatus1'+ind).val();
+    param.ppendanaan    =$('#ppendanaan1'+ind).val();
+    
     param.totalPrev     =_.dpendapatan[ind].totalPrev;
     
     param.keterangan=$('#keterangan1'+''+ind).val();
@@ -1303,7 +1452,8 @@ function _saveBelanjaed(ind){
     param.satx          =_.dbelanja[ind].satx;
     param.nilaix        =_.dbelanja[ind].nilaix;
     param.total        =_.dbelanja[ind].totalTam;
-    param.status        =$('#pstatus1'+ind).val();
+    param.status        =$('#pstatus2'+ind).val();
+    param.ppendanaan    =$('#ppendanaan2'+ind).val();
     param.totalPrev     =_.dbelanja[ind].totalPrev;
 
     param.keterangan=$('#keterangan2'+''+ind).val();
@@ -1358,7 +1508,8 @@ function _savePembiayaaned(ind){
     param.satx          =_.dpembiayaan[ind].satx;
     param.nilaix        =_.dpembiayaan[ind].nilaix;
     param.total        =_.dpembiayaan[ind].totalTam;
-    param.status        =$('#pstatus1'+ind).val();
+    param.status        =$('#pstatus2'+ind).val();
+    param.ppendanaan    =$('#ppendanaan3'+ind).val();
     param.totalPrev     =_.dpembiayaan[ind].totalPrev;
     
     param.keterangan=$('#keterangan3'+''+ind).val();
@@ -1564,7 +1715,72 @@ function _responStruktur(data){
     if(data!=null){
         _.dall=data.dall;
     }
+    paguPembiayaan1=0;
+    paguPembiayaan1x=0;
+    paguPembiayaan2=0;
+    paguPembiayaan2x=0;
+    paguBelanja=0;
+    paguBelanjax=0;
+    paguPendapan=0;
+    paguPendapanx=0;
+
     $('#tabelStrukturShow').html(setTabelStruktur());
+
+    // set pagu pembiayaan yang terdapat proses pengurangannya dan netto
+    tpagu1x=paguPembiayaan1-paguPembiayaan2;
+    tpagu2x=paguPembiayaan1x-paguPembiayaan2x;
+    $('#pagu1').html(_$(tpagu1x));
+    $('#pagu11').html(_$(tpagu2x));
+
+    $('#npagu1').html(_$(tpagu1x));
+    $('#npagu11').html(_$(tpagu2x));
+
+    dpersen=_hitungPersenStruktur(tpagu1x,tpagu2x);
+
+    $('#nilai1').html(dpersen.nilai);
+    $('#persen1').html(dpersen.persen);
+    
+    $('#nnilai1').html(dpersen.nilai);
+    $('#npersen1').html(dpersen.persen);
+    // _log(paguPembiayaan1,paguPembiayaan2);
+
+
+    // set surplus
+    tsurplus    =paguPendapan-paguBelanja;
+    tsurplusx   =paguPendapanx-paguBelanjax;
+
+    // _log(tsurplus,tpagu1x);
+    
+    if(tsurplus<0){
+        tsisa=tsurplus+tpagu1x;
+        tsisax=tsurplusx+tpagu2x;
+    }else{
+        tsisa=tsurplus-tpagu1x;
+        tsisax=tsurplusx-tpagu2x;
+    }
+
+    $('#spagu1').html(_$(tsisa));
+    $('#spagu11').html(_$(tsisax));
+
+    dpersen=_hitungPersenStruktur(tsisa,tsisax);
+    $('#snilai1').html(dpersen.nilai);
+    $('#spersen1').html(dpersen.persen);
+
+
+    // set total APBD
+    // _log(paguPendapanx,paguPembiayaan1x);
+    tapbd    =parseFloat(paguPendapan)+parseFloat(paguPembiayaan1);
+    tapbdx   =parseFloat(paguPendapanx)+parseFloat(paguPembiayaan1x);
+
+    _log(tapbd,tapbdx);
+    $('#tpagu1').html(_$(tapbd));
+    $('#tpagu11').html(_$(tapbdx));
+
+    dpersen=_hitungPersenStruktur(tapbd,tapbdx);
+    $('#tnilai1').html(dpersen.nilai);
+    $('#tpersen1').html(dpersen.persen);
+
+
     _startTabel("tabelStruktur");
 }
 
@@ -1722,9 +1938,9 @@ function _addUsulaned(){
         if(_isNull(param.kdKelompok)){return _toast({isi:msg.addKode+" Kelompok"})};
         if(_isNull(param.kdJenis)){return _toast({isi:msg.addKode+" Jenis Kelompok"})};
     
-        if(Number($('#kdKelompok').val())==1){
-            if(_isNull(param.kdSub)){return _toast({isi:msg.addKode+" Sub Kegiatan"})};
-        }
+        // if(Number($('#kdKelompok').val())==1){
+        //     if(_isNull(param.kdSub)){return _toast({isi:msg.addKode+" Sub Kegiatan"})};
+        // }
         
         if(_isNull(param.usulan)){return _toast({isi:msg.add+" Usulan"})};
         if(_isNull(param.nomor)){return _toast({isi:msg.add+" Nomor"})};

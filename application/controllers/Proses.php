@@ -360,7 +360,7 @@ class Proses extends CI_Controller {
                     ".$this->qdata->_checkStringQuery($kdTabel).",".$this->qdata->_checkStringQuery("2G18-memb-".$kdTabel).",
                     ".$this->qdata->_checkStringQuery($nmMember).",
                     ".$this->qdata->_checkStringQuery($kdJabatan).",".$this->qdata->_checkStringQuery($kdDinas).",
-                    ".$this->qdata->_checkStringQuery("M".($kdTabel-1)."-".$username).",".$this->qdata->_checkStringQuery($password)."
+                    ".$this->qdata->_checkStringQuery("AP".($kdTabel-1)."-".$username).",".$this->qdata->_checkStringQuery($password)."
                 )
             ";
             // return print_r(substr($kdJabatan,strlen($kdJabatan)-1));
@@ -992,7 +992,7 @@ class Proses extends CI_Controller {
             $check=$this->Queries->_funcProcedure($q);
             if($check){
                 if($check[0]['status']){
-                    $this->_['dsub2']     =$this->Queries->_func($this->qdata->_dsub2(0,$this->tahun," and b.perkada2=".$perkada));
+                    $this->_['dsub2']     =$this->Queries->_func($this->qdata->_dsub2($pembahasan,$tahun," and b.perkada2=".$perkada));
                     return $this->qdata->responTrue($this->_);
                 }
                 return $this->qdata->responFalse("Data Dengan Kode Tersebut Telah Terdaftar Pada Sistem !!!");
@@ -1027,7 +1027,7 @@ class Proses extends CI_Controller {
             // return  print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub2']     =$this->Queries->_func($this->qdata->_dsub2(0,$this->tahun," and b.perkada2=".$perkada));
+                $this->_['dsub2']     =$this->Queries->_func($this->qdata->_dsub2($pembahasan,$tahun," and b.perkada2=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1056,7 +1056,7 @@ class Proses extends CI_Controller {
             // return print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub2']     =$this->Queries->_func($this->qdata->_dsub2(0,$this->tahun," and b.perkada2=".$perkada));
+                $this->_['dsub2']     =$this->Queries->_func($this->qdata->_dsub2($pembahasan,$tahun," and b.perkada2=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1092,7 +1092,7 @@ class Proses extends CI_Controller {
             $check=$this->Queries->_funcProcedure($q);
             if($check){
                 if($check[0]['status']){
-                    $this->_['dsub3']     =$this->Queries->_func($this->qdata->_dsub3(false,0,$this->tahun," and c.perkada3=".$perkada));
+                    $this->_['dsub3']     =$this->Queries->_func($this->qdata->_dsub3(false,$pembahasan,$tahun," and c.perkada3=".$perkada));
                     return $this->qdata->responTrue($this->_);
                 }
                 return $this->qdata->responFalse("Data Dengan Kode Tersebut Telah Terdaftar Pada Sistem !!!");
@@ -1127,7 +1127,7 @@ class Proses extends CI_Controller {
             // return  print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub3']     =$this->Queries->_func($this->qdata->_dsub3(false,0,$this->tahun," and c.perkada3=".$perkada));
+                $this->_['dsub3']     =$this->Queries->_func($this->qdata->_dsub3(false,$pembahasan,$tahun," and c.perkada3=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1156,7 +1156,7 @@ class Proses extends CI_Controller {
             // return print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub3']     =$this->Queries->_func($this->qdata->_dsub3(false,0,$this->tahun," and c.perkada3=".$perkada));
+                $this->_['dsub3']     =$this->Queries->_func($this->qdata->_dsub3(false,$pembahasan,$tahun," and c.perkada3=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1192,7 +1192,7 @@ class Proses extends CI_Controller {
             $check=$this->Queries->_funcProcedure($q);
             if($check){
                 if($check[0]['status']){
-                    $this->_['dsub4']     =$this->Queries->_func($this->qdata->_dsub4(false,0,$this->tahun,""));
+                    $this->_['dsub4']     =$this->Queries->_func($this->qdata->_dsub4(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                     return $this->qdata->responTrue($this->_);
                 }
                 return $this->qdata->responFalse("Data Dengan Kode Tersebut Telah Terdaftar Pada Sistem !!!");
@@ -1227,7 +1227,7 @@ class Proses extends CI_Controller {
             // return  print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub4']     =$this->Queries->_func($this->qdata->_dsub4(false,0,$this->tahun,""));
+                $this->_['dsub4']     =$this->Queries->_func($this->qdata->_dsub4(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1257,7 +1257,7 @@ class Proses extends CI_Controller {
             // return print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub4']     =$this->Queries->_func($this->qdata->_dsub4(false,0,$this->tahun,""));
+                $this->_['dsub4']     =$this->Queries->_func($this->qdata->_dsub4(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1294,7 +1294,7 @@ class Proses extends CI_Controller {
             $check=$this->Queries->_funcProcedure($q);
             if($check){
                 if($check[0]['status']){
-                    $this->_['dsub5']     =$this->Queries->_func($this->qdata->_dsub5(false,0,$this->tahun,""));
+                    $this->_['dsub5']     =$this->Queries->_func($this->qdata->_dsub5(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                     return $this->qdata->responTrue($this->_);
                 }
                 return $this->qdata->responFalse("Data Dengan Kode Tersebut Telah Terdaftar Pada Sistem !!!");
@@ -1329,7 +1329,7 @@ class Proses extends CI_Controller {
             // return  print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub5']     =$this->Queries->_func($this->qdata->_dsub5(false,0,$this->tahun,""));
+                $this->_['dsub5']     =$this->Queries->_func($this->qdata->_dsub5(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1358,7 +1358,7 @@ class Proses extends CI_Controller {
             // return print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub5']     =$this->Queries->_func($this->qdata->_dsub5(false,0,$this->tahun,""));
+                $this->_['dsub5']     =$this->Queries->_func($this->qdata->_dsub5(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1395,7 +1395,7 @@ class Proses extends CI_Controller {
             $check=$this->Queries->_funcProcedure($q);
             if($check){
                 if($check[0]['status']){
-                    $this->_['dsub6']     =$this->Queries->_func($this->qdata->_dsub6(false,0,$this->tahun,""));
+                    $this->_['dsub6']     =$this->Queries->_func($this->qdata->_dsub6(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                     return $this->qdata->responTrue($this->_);
                 }
                 return $this->qdata->responFalse("Data Dengan Kode Tersebut Telah Terdaftar Pada Sistem !!!");
@@ -1430,7 +1430,7 @@ class Proses extends CI_Controller {
             // return  print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub6']     =$this->Queries->_func($this->qdata->_dsub6(false,0,$this->tahun,""));
+                $this->_['dsub6']     =$this->Queries->_func($this->qdata->_dsub6(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1459,7 +1459,7 @@ class Proses extends CI_Controller {
             // return print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub6']     =$this->Queries->_func($this->qdata->_dsub6(false,0,$this->tahun,""));
+                $this->_['dsub6']     =$this->Queries->_func($this->qdata->_dsub6(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1495,7 +1495,7 @@ class Proses extends CI_Controller {
             $check=$this->Queries->_funcProcedure($q);
             if($check){
                 if($check[0]['status']){
-                    $this->_['dsub7']     =$this->Queries->_func($this->qdata->_dsub7(false,0,$this->tahun,""));
+                    $this->_['dsub7']     =$this->Queries->_func($this->qdata->_dsub7(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                     return $this->qdata->responTrue($this->_);
                 }
                 return $this->qdata->responFalse("Data Dengan Kode Tersebut Telah Terdaftar Pada Sistem !!!");
@@ -1530,7 +1530,7 @@ class Proses extends CI_Controller {
             // return  print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub7']     =$this->Queries->_func($this->qdata->_dsub7(false,0,$this->tahun,""));
+                $this->_['dsub7']     =$this->Queries->_func($this->qdata->_dsub7(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -1559,7 +1559,7 @@ class Proses extends CI_Controller {
             // return print_r($q);
             $check=$this->Queries->_procProcedure($q);
             if($check){
-                $this->_['dsub7']     =$this->Queries->_func($this->qdata->_dsub7(false,0,$this->tahun,""));
+                $this->_['dsub7']     =$this->Queries->_func($this->qdata->_dsub7(false,$pembahasan,$tahun," and d.perkada4=".$perkada));
                 return $this->qdata->responTrue($this->_);
             }else{
                 return $this->qdata->responFalse("Terjadi Kesalahan di penyimpanan sistem");
@@ -2490,6 +2490,7 @@ class Proses extends CI_Controller {
             $keterangan =$baseEND->{'keterangan'};
             $nm         =$baseEND->{'nmSub'};
             $status     =$baseEND->{'status'};
+            $pendanaan  =$baseEND->{'ppendanaan'};
             
             $pagu       =$nilaix*$volx;
 
@@ -2501,7 +2502,8 @@ class Proses extends CI_Controller {
                     satx=".$this->qdata->_checkStringQuery($satx).",
                     nilaix=".$this->qdata->_checkStringQuery($nilaix).",
                     keteranganx=".$this->qdata->_checkStringQuery($keterangan).",
-                    statusx=".$this->qdata->_checkStringQuery($status)."
+                    statusx=".$this->qdata->_checkStringQuery($status).",
+                    statusPendanaan=".$this->qdata->_checkStringQuery($pendanaan)."
                 WHERE kdUsulan=".$this->qdata->_checkStringQuery($kdUsulan)." AND 
                 kdMember=".$this->qdata->_checkStringQuery($kdMember)." AND 
                 kdDinas=".$this->qdata->_checkStringQuery($kdDinas)." AND 
@@ -2514,13 +2516,18 @@ class Proses extends CI_Controller {
             $pagux=$this->Queries->_func("
                 SELECT sum((volx*nilaix)) as total FROM usulan where 
                 (volx*nilaix)>0 and
+                kdUsulan!=".$this->qdata->_checkStringQuery($kdUsulan)." and
+                kdMember!=".$this->qdata->_checkStringQuery($kdMember)." and
+                kdDinas!=".$this->qdata->_checkStringQuery($kdDinas)." and
+
                 kdSubJenis=".$this->qdata->_checkStringQuery($kd)." and
                 perkada=".$this->qdata->_checkStringQuery($perkada)." and
                 noPembahasan=".$this->qdata->_checkStringQuery($pembahasan)." and
                 tahun=".$this->qdata->_checkStringQuery($tahun)."
                 group by kdSubJenis
             ");
-
+            
+            // return print_r($pagux);
             // $paguxDinas=$this->Queries->_func("
             //     SELECT sum((volx*nilaix)) as total FROM usulan where 
             //     kdUsulan!=".$this->qdata->_checkStringQuery($kdUsulan)." AND 
@@ -2532,10 +2539,20 @@ class Proses extends CI_Controller {
             //     group by kdSubJenis
             // ");
             
-            
+            // if($totalPrev<0 && $pagu<0){
+            //     $pagu-=$totalPrev;
+            // }else if($totalPrev<0 && $pagu>0){
+            //     $pagu-=$totalPrev;
+            // }
+
+
             if(count($pagux)>0){
-                $pagu+=($pagux[0]['total']-$totalPrev);
+                $pagu+=$pagux[0]['total'];
+                // return print_r($pagu."saass");
             }
+            // else{
+            //     $pagu-=$totalPrev;
+            // }
             // return print_r($pagu);
             // if(count($paguxDinas)>0){
             //     $paguxDinas=$paguxDinas[0]['total']+$pagu;
@@ -2607,6 +2624,7 @@ class Proses extends CI_Controller {
                         noPembahasan".$noTabelSub."=".$this->qdata->_checkStringQuery($pembahasan)." and
                         date".$noTabelSub."=".$this->qdata->_checkStringQuery($tahun)."
                     ");
+                    
                     if(empty($q1[0]['pagu'])){
                         $q.="
                             update apbdsub".$noTabelSub." set paguR".$noTabelSub."=pagu".$noTabelSub." where 
@@ -2617,10 +2635,11 @@ class Proses extends CI_Controller {
                             date".$noTabelSub."=".$this->qdata->_checkStringQuery($tahun)."
                         ";
                         $pagu+=$q1[0]['pagu'.$noTabelSub];
+                        // return print_r($pagu."tester"); 
                     }else{
                         $pagu+=$q1[0]['pagu'];
                     }
-
+                    // return print_r($pagu." | ".$q1[0]['pagu']);
 
                     $q2=" call pupdSub".$noTabelSub."(
                             ".$this->qdata->_checkStringQuery($kdPrev).",

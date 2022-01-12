@@ -10,7 +10,7 @@ var img={
   ,idView:"images"
 },
 _file={
-  size :2000000 //2 MB
+  size :15000000 //2 MB
   ,data:Array()
   ,fileName:["application/pdf","pdf"]
   ,maxUpload:2
@@ -26,7 +26,8 @@ _jbt={
   kajiTapd  :[4,5,6]
 },
 vjabatan='4',
-_notif=false;
+_pageLength=25,
+_notif=false,
 _vmaxTabel=3;
 var uang = new Intl.NumberFormat('en-US',
     { style: 'currency', currency: 'USD',

@@ -97,6 +97,7 @@
             if($previews){
                 return print_r($tampHtml);
             }
+            ob_end_clean(); 
             $libTC->Output($v['name'], 'I');
         }
         function cetakTCEmail($vx1){ //versi output ke email

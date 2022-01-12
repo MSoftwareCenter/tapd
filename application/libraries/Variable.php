@@ -422,7 +422,7 @@
                     </div>
                     <div id='loading'>
                         <div style='background-color:#eee;'>
-                            <div style='margin:auto; display: block;width: -moz-max-content; height:800px'>
+                            <div style='margin:auto; display: block;width:max-content; height:800px'>
                                 <img src='".$this->_getAssetUrl()."bgSupportCss/loader1.gif' style='margin-top:50%;'>
                             </div>
                         </div>

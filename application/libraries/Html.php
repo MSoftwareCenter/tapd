@@ -497,6 +497,35 @@
             </table>';
         }
         function _lstruktur($data){
+            $paguPembiayaan1=0;
+            $paguPembiayaan1x=0;
+            $paguPembiayaan2=0;
+            $paguPembiayaan2x=0;
+            $paguBelanja=0;
+            $paguBelanjax=0;
+            $paguPendapan=0;
+            $paguPendapanx=0;
+
+            foreach ($data as $key => $v) {
+                if($v['nmSub1']=="BELANJA DAERAH"){
+                    $paguBelanja=$v['pagu1'];
+                    $paguBelanjax=$v['pagu11'];
+                }
+                if($v['nmSub1']=="PENDAPATAN DAERAH"){
+                    $paguPendapan=$v['pagu1'];
+                    $paguPendapanx=$v['pagu11'];
+                }
+                
+                if($v['nmSub2']=="PENERIMAAN PEMBIAYAAN"){
+                    $paguPembiayaan1=$v['pagu2'];
+                    $paguPembiayaan1x=$v['pagu21'];
+                }
+                if($v['nmSub2']=="PENGELUARAN PEMBIAYAAN"){
+                    $paguPembiayaan2=$v['pagu2'];
+                    $paguPembiayaan2x=$v['pagu21'];
+                }
+            }
+
             $w1="75%;";
             $w2="10%;";
             $w3="15%;";
@@ -532,7 +561,7 @@
                 if($fkdSub1!=$v['kdSub1'] && $v['kdSub1']!=null){
                     $fkdSub1=$v['kdSub1'];
                     $fkdEnd=$v['kdSub1'];
-                    $dpersen=$this->_hitungPersenStruktur($v['pagu1'],$v['pagu11']);
+                    // $dpersen=$this->_hitungPersenStruktur($v['pagu1'],$v['pagu11']);
                     // _.dusulan[i].subSelected=$v['nmSub1'];
                     $fstyle="";
                     if($v['selected1']==1 && $v['pagu1']!=$v['pagu11']){
@@ -542,15 +571,52 @@
                             $fstyle="background-color: #8d0909;color: #fff;";
                         }
                     }
-                    $fdata.='
-                    <tr style="padding:5px; '.$fstyle.'">
-                        <td style="width:'.$fno.';">'.$v['kdSub1'].'</td>
-                        <td style="width:'.$fwusulan.'">'.$v['nmSub1'].'</td>
-                        <td style="width:'.$fnilai.'">'.$this->_uang($v['pagu1']).'</td>
-                        <td style="width:'.$fnilai.'">'.$this->_uang($v['pagu11']).'</td>
-                        <td style="width:'.$fnilai.'">'.$dpersen['nilai'].'</td>
-                        <td style="width:'.$fnilai.'">'.$dpersen['persen'].'</td>
-                    </tr>';
+
+
+                    $fsurplus=false;
+                    if($v['nmSub1']=="PEMBIAYAAN DAERAH"){
+                        $fsurplus=true;
+                    }
+
+                    if($fsurplus){
+                        $tsurplus    =$paguPendapan-$paguBelanja;
+                        $tsurplusx   =$paguPendapanx-$paguBelanjax;
+                        $dpersen=$this->_hitungPersenStruktur($tsurplus,$tsurplusx);
+                        $fdata.='
+                            <tr style="padding:5px; background-color:yellow;">
+                                <td style="width:'.$fno.';">'.$v['kdSub1'].'</td>
+                                <td style="width:'.$fwusulan.'">TOTAL SURPLUS/(DEFISIT)</td>
+                                <td style="width:'.$fnilai.'">'.$this->_uang($tsurplus).'</td>
+                                <td style="width:'.$fnilai.'">'.$this->_uang($tsurplusx).'</td>
+                                <td style="width:'.$fnilai.'">'.$dpersen['nilai'].'</td>
+                                <td style="width:'.$fnilai.'">'.$dpersen['persen'].'</td>
+                            </tr>';
+                        
+                        $tpagu1x=$paguPembiayaan1-$paguPembiayaan2;
+                        $tpagu2x=$paguPembiayaan1x-$paguPembiayaan2x;
+                        $dpersen=$this->_hitungPersenStruktur($tpagu1x,$tpagu2x);
+                        $fdata.='
+                        <tr style="padding:5px; '.$fstyle.'">
+                            <td style="width:'.$fno.';">'.$v['kdSub1'].'</td>
+                            <td style="width:'.$fwusulan.'">'.$v['nmSub1'].'</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($tpagu1x).'</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($tpagu2x).'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['nilai'].'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['persen'].'</td>
+                        </tr>';
+                    }else{
+                        $dpersen=$this->_hitungPersenStruktur($v['pagu1'],$v['pagu11']);
+                        $fdata.='
+                        <tr style="padding:5px; '.$fstyle.'">
+                            <td style="width:'.$fno.';">'.$v['kdSub1'].'</td>
+                            <td style="width:'.$fwusulan.'">'.$v['nmSub1'].'</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($v['pagu1']).'</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($v['pagu11']).'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['nilai'].'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['persen'].'</td>
+                        </tr>';
+                    }
+                    
                 }
                 if($fkdSub2!=$v['kdSub2'] && $v['kdSub2']!=null){
                     $fkdSub2=$v['kdSub2'];
@@ -565,6 +631,8 @@
                             $fstyle="background-color: #8d0909;color: #fff;";
                         }
                     }
+
+
                     $fdata.='
                     <tr style="padding:5px; '.$fstyle.'">
                         <td style="width:'.$fno.';">'.$v['kdSub2'].'</td>
@@ -689,6 +757,64 @@
                         <td style="width:'.$fnilai.'">'.$dpersen['nilai'].'</td>
                         <td style="width:'.$fnilai.'">'.$dpersen['persen'].'</td>
                     </tr>';
+                }
+
+                if($key==count($data)-1){
+                    // set pagu pembiayaan yang terdapat proses pengurangannya dan netto
+                    $tpagu1x=$paguPembiayaan1-$paguPembiayaan2;
+                    $tpagu2x=$paguPembiayaan1x-$paguPembiayaan2x;
+                    $dpersen=$this->_hitungPersenStruktur($tpagu1x,$tpagu2x);
+                                        
+                    $fdata.='
+                        <tr style="padding:5px; background-color:yellow;">
+                            <td></td>
+                            <td>PEMBIAYAAN NETTO</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($tpagu1x).'</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($tpagu2x).'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['nilai'].'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['persen'].'</td>
+                        </tr>';
+
+                    $tsurplus    =$paguPendapan-$paguBelanja;
+                    $tsurplusx   =$paguPendapanx-$paguBelanjax;
+
+                    // _log(tsurplus,tpagu1x);
+                    
+                    if($tsurplus<0){
+                        $tsisa=$tsurplus+$tpagu1x;
+                        $tsisax=$tsurplusx+$tpagu2x;
+                    }else{
+                        $tsisa=$tsurplus-$tpagu1x;
+                        $tsisax=$tsurplusx-$tpagu2x;
+                    }
+
+                    $dpersen=$this->_hitungPersenStruktur($tsisa,$tsisax);
+                    $fdata.='<tr style="padding:5px; background-color:yellow;">
+                            <td></td>
+                            <td>Sisa Lebih Pembiayaan Anggaran Daerah Tahun Berkenaan</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($tsisa).'</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($tsisax).'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['nilai'].'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['persen'].'</td>
+                        </tr>';
+
+
+                    // set total APBD
+                    
+                    $tapbd    =$paguPendapan+$paguPembiayaan1;
+                    $tapbdx   =$paguPendapanx+$paguPembiayaan1x;
+
+
+
+                    $dpersen=$this->_hitungPersenStruktur($tapbd,$tapbdx);
+                    $fdata.='<tr style="padding:5px; background-color:yellow;">
+                            <td></td>
+                            <td>TOTAL APBD</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($tapbd).'</td>
+                            <td style="width:'.$fnilai.'">'.$this->_uang($tapbdx).'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['nilai'].'</td>
+                            <td style="width:'.$fnilai.'">'.$dpersen['persen'].'</td> 
+                        </tr>';
                 }
             }
             return $fdata.='</tbody>

@@ -52,7 +52,7 @@ function _form(){
                     <!-- Bootstrap tab card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="col-sm-3 text-info">Data Usulan</h5>
+                            <h5 class="col-sm-3 text-info">Daftar Usulan</h5>
                             <div class="card-header-right">
 
                             </div>
@@ -152,6 +152,7 @@ function setButton(v,i) {
     }
 }
 function _add(ind){
+    _file.data=[];
     _modalEx1({
         judul:"Tambah Pertimbangan".toUpperCase(),
         icon:`<i class="mdi mdi-note-plus"></i>`,

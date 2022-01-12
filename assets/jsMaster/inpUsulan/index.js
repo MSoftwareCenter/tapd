@@ -58,12 +58,16 @@ function _onload(data){
 function _form(){
     infoSupport=[];
     infoSupport1=[];
-    infoSupport.push({ 
-        clsBtn:`btn-outline-success`
-        ,func:"_viewUndangan()"
-        ,icon:`<i class="mdi mdi-checkbox-multiple-marked-outline text-dark"></i>File Undangan`
-        ,title:"Preview File Undangan"
-    });
+    
+    if(_.filesUndangan.length>0){
+        infoSupport.push({ 
+            clsBtn:`btn-outline-success`
+            ,func:"_viewUndangan()"
+            ,icon:`<i class="mdi mdi-checkbox-multiple-marked-outline text-dark"></i>File Undangan`
+            ,title:"Preview File Undangan"
+        });
+    }
+
     if(!Number(_.qcode[0].kunci) && _.noPembahasan>0){
         infoSupport.push({ 
             clsBtn:`btn-outline-primary`
@@ -300,7 +304,11 @@ function _vtabel() {
 }
 
 function _viewUndangan(){
-    return _redirectOpen("laporan/previewFile/"+btoa(JSON.stringify(({files:_.filesUndangan}))));
+    if(_.filesUndangan.length>0){
+        return _redirectOpen("laporan/previewFile/"+btoa(JSON.stringify(({files:_.filesUndangan}))));
+    }else{
+        _toast({isi:"Dokumen tidak tersedia !!!"});
+    }
 }
 
 function _selectKelompok(v){
@@ -316,11 +324,12 @@ function _selectKelompok(v){
         func:"_selectJenis",
         idDropdonw:"idInpDropjenis",
     });
-
-    $('#jikaBelanja').css({'display':"none"});
-    if(Number(v.value)==1){
-        $('#jikaBelanja').css({'display':""});
-    }
+    _.svKdJenis=undefined;
+    // $('#jikaBelanja').css({'display':""});
+    // if(Number(v.value)==1){
+    //     $('#jikaBelanja').css({'display':"none"});
+    //     _.svKdJenis=_.djenis[Number(v.value)][0].value;
+    // }
 }
 
 function _selectJenis(idForDrop,id,value,valueName){
@@ -411,6 +420,7 @@ function hitung(vol,tot) {
 }
 
 function _add(){
+    _file.data=[];
     _modalEx1({
         judul:"Tambah Usulan".toUpperCase(),
         icon:`<i class="mdi mdi-note-plus"></i>`,
@@ -449,7 +459,7 @@ function _added(){
     if(_isNull(param.kdJenis)){return _toast({isi:msg.addKode+" Jenis Kelompok"})};
 
     if(Number($('#kdKelompok').val())==1){
-        if(_isNull(param.kdSub)){return _toast({isi:msg.addKode+" Sub Kegiatan"})};
+        // if(_isNull(param.kdSub)){return _toast({isi:msg.addKode+" Sub Kegiatan"})};
     }
     
     if(_isNull(param.usulan)){return _toast({isi:msg.add+" Usulan"})};
@@ -541,7 +551,7 @@ function _upded(ind){
     if(_isNull(param.kdJenis)){return _toast({isi:msg.addKode+" Jenis Kelompok"})};
     
     if(Number($('#kdKelompok').val())==1){
-        if(_isNull(param.kdSub)){return _toast({isi:msg.addKode+" Sub Kegiatan"})};
+        // if(_isNull(param.kdSub)){return _toast({isi:msg.addKode+" Sub Kegiatan"})};
     }
 
     if(_isNull(param.usulan)){return _toast({isi:msg.add+" Usulan"})};

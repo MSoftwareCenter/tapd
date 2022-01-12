@@ -260,7 +260,10 @@ function _setModalContent(content){
 }
 function _startTabel(id){
     $(document).ready(function() {
-        $('#'+id).DataTable();
+        // $('#'+id).DataTable();
+        $('#'+id).DataTable({
+            "pageLength": _pageLength
+        }); 
     });
 }
 function _startTextEditor(){

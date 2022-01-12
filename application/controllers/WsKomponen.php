@@ -271,12 +271,14 @@ class WsKomponen extends CI_Controller {
         $this->_['dsub']=$this->Queries->_func($this->qdata->_cbSub(false," where b.kdDinas='".$this->kdDinas."' and b.perkadaS='".$this->perkada."' and b.taSub='".$this->tahun."'"));
         
         $where=" and h.kdMember=".$this->qdata->_checkStringQuery($this->kdMember);
-        // return print_r($this->kdJabatan);
+        
         $this->_['kdDinas']=$this->kdDinas;
 
         if($this->kdJabatan>2){
             $where="";
         }
+
+        // return print_r($this->qdata->_getAllDataUsulan($this->noPembahasan,$this->perkada,$this->tahun,$where));
         $this->_['dusulan']=$this->Queries->_func($this->qdata->_getAllDataUsulan($this->noPembahasan,$this->perkada,$this->tahun,$where));
         $this->_['kdMember']=$this->kdMember;
 
@@ -373,7 +375,7 @@ class WsKomponen extends CI_Controller {
             $this->Queries->_func($this->qdata->_getDinasTapd(" and nmDinas!='SEKRETARIAT DAERAH'"))
         );
         $this->_['dtujuan2']=array_merge(
-            ["value"=>"4-10-00-001","valueName"=>"SEKRETARIS TAPD"]
+            array(["value"=>"4-10-00-001","valueName"=>"SEKRETARIS TAPD"])
             ,
             $this->Queries->_func($this->qdata->_getDinasTapd(" and nmDinas!='SEKRETARIAT DAERAH'"))
         );
@@ -528,6 +530,8 @@ class WsKomponen extends CI_Controller {
                 " and a.kdSub1=".$this->qdata->_checkStringQuery("6")." "
             )); // 4 adalah kdSub1 apbd pendapatan
             $this->_['dstatus']=$this->qdata->_cbStatus();
+            $this->_['dPendanaan']=$this->qdata->_cbStatusPendanaan();
+            
         }else{
             // return print_r("ok");
             $this->_['pembahasan']=$this->Queries->_func("SELECT 
@@ -644,12 +648,18 @@ class WsKomponen extends CI_Controller {
 
         $this->_['xxx']=$xxx;
         $this->_['qlab']=$this->qdata->_xxx(base64_encode($xxx));
-
+        // return print_r($this->_['ptahun']);
         $p=json_decode((base64_decode($p)));
-        if($p->perkada==0 && $p->tahun==0){
-            $perkada    =$this->_['ptahun'][0]['perkada'][0]['value'];
-            $tahun      =$this->_['ptahun'][0]['value'];
-            $pembahasan =$this->_['ptahun'][0]['perkada'][0]['pembahasan'][0]['value'];
+        if($p->perkada==0 && $p->tahun==0 ){
+            if(count($this->_['ptahun'])>0){
+                $perkada    =$this->_['ptahun'][0]['perkada'][0]['value'];
+                $tahun      =$this->_['ptahun'][0]['value'];
+                $pembahasan =$this->_['ptahun'][0]['perkada'][0]['pembahasan'][0]['value'];
+            }else{
+                $pembahasan =$this->noPembahasan;
+                $perkada    =$this->perkada;
+                $tahun      =$this->tahun;
+            }
         }else{
             $pembahasan =$p->noPembahasan;
             $perkada    =$p->perkada;

@@ -406,9 +406,9 @@ function _upded(ind){
     if(_isNull(param.kdKelompok)){return _toast({isi:msg.addKode+" Kelompok"})};
     if(_isNull(param.kdJenis)){return _toast({isi:msg.addKode+" Jenis Kelompok"})};
     
-    if(Number($('#kdKelompok').val())==1){
-        if(_isNull(param.kdSub)){return _toast({isi:msg.addKode+" Sub Kegiatan"})};
-    }
+    // if(Number($('#kdKelompok').val())==1){
+    //     if(_isNull(param.kdSub)){return _toast({isi:msg.addKode+" Sub Kegiatan"})};
+    // }
 
     if(_isNull(param.usulan)){return _toast({isi:msg.add+" Usulan"})};
     if(_isNull(param.nomor)){return _toast({isi:msg.add+" Nomor"})};

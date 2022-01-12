@@ -277,11 +277,24 @@ function setTabelSub1() {
                 </button>
             `;
         }
+
+        ftotalxx=v.pagu1;
+        if(v.nmSub1=="PEMBIAYAAN DAERAH"){
+            ftotalxx=0;
+            _.dapbd.dsub2.forEach((vxx,ixx) => {
+                if(vxx.nmSub2=="PENERIMAAN PEMBIAYAAN"){
+                    ftotalxx+=vxx.pagu2;
+                }
+                if(vxx.nmSub2=="PENGELUARAN PEMBIAYAAN"){
+                    ftotalxx-=vxx.pagu2;
+                }
+            });
+        }
         ftabel+=`
             <tr>
                 <td>`+(i+1)+`</td>
                 <td>`+v.nmSub1+`</td>
-                <td id='pagu1`+i+`'>`+_$(v.pagu1)+`</td>
+                <td id='pagu1`+i+`'>`+_$(ftotalxx)+`</td>
                 <td style="width: 15%;">
                     `+ftam+`
                 </td>

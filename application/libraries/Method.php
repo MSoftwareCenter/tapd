@@ -55,15 +55,16 @@
             return '"'.$res.'"';
         }
         function _toNumber($val){
-           
             $split=explode('.',$val);
+            return $val;
             $res="";
             for($a=0;$a<count($split);$a++){
                 $res.=$split[$a];
             }
-            ;
-            $split=explode(",",$res);
+           
+            $split=explode(",",$val);
             $res="";
+            return $split;
             for($a=0;$a<count($split);$a++){
                 $res.=$split[$a];
             }

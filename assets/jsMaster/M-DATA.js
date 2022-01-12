@@ -109,22 +109,24 @@ function _formTambahUsulan(){
         func:"_selectJenis",
         funcSearch:"_formSearchJenis(this)"
     })
-    +`
-        <div id="jikaBelanja" style="display:none;">`
-        +_inpDropdonwSelected({
-            judul:"Sub kegiatan",
-            id:"sub",
-            idJudul:"jsub",
-            idData:"dsub",
-            data:_.dsub,
-            bgSearch:"#283941",
-            bg:" background:#297182;",
-            idDropdonw:"idInpDropSub",
-            func:"_selectSub",
-            funcSearch:"_formSearchSub(this)"
-        })
-        +`</div>
-    `
+    // style="display:none;"
+    // +`
+        // <div id="jikaBelanja">
+        
+        // +_inpDropdonwSelected({
+        //     judul:"Sub kegiatan",
+        //     id:"sub",
+        //     idJudul:"jsub",
+        //     idData:"dsub",
+        //     data:_.dsub,
+        //     bgSearch:"#283941",
+        //     bg:" background:#297182;",
+        //     idDropdonw:"idInpDropSub",
+        //     func:"_selectSub",
+        //     funcSearch:"_formSearchSub(this)"
+        // })
+        // +`</div>
+    // `
     +_inpSejajar({
         color:"black",
         judul:"Usulan",

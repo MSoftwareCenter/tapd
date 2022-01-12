@@ -62,6 +62,18 @@
                 "valueName"=>"DITOLAK",
             ]);
         }
+        function _cbStatusPendanaan(){
+            return array([
+                "value"=>"-",
+                "valueName"=>"PILIHAN",
+            ],[
+                "value"=>"PERGESERAN ANGGARAN",
+                "valueName"=>"PERGESERAN ANGGARAN",
+            ],[
+                "value"=>"ANGGARAN BARU",
+                "valueName"=>"ANGGARAN BARU",
+            ]);
+        }
         function _cbLaporan(){
             return array([
                 "value"=>"-",
@@ -629,12 +641,12 @@
                         h.tahun,(h.vol*h.nilai) as total,h.kdMember,h.kdDinas,
                     i.kdSub,i.nmSub
                 from apbdsub1 a 
-                join apbdsub2 b on
+                LEFT join apbdsub2 b on
                     a.kdSub1=b.kdSub1
                     and b.noPembahasan2=a.noPembahasan1
                     and b.perkada2=a.perkada1
                     and b.date2=a.date1
-                join apbdsub3 c on
+                LEFT join apbdsub3 c on
                     c.kdSub2=b.kdSub2
                     and c.noPembahasan3=b.noPembahasan2
                     and b.perkada2=c.perkada3
@@ -813,14 +825,14 @@
                             where noPembahasan".($no+6)."=".$this->_checkStringQuery($noBandingan)." and perkada".($no+6)."=g.perkada".($no+6)." and date".($no+6)."=".$this->_checkStringQuery($tahun)." and kdSub".($no+6)."=g.kdSub".($no+6)."
                         )as pagu".($no+6)."1,
                     h.kdUsulan,h.kdDinas,h.kdSubJenis,h.nmUsulan,h.no,h.date,h.vol,h.sat,h.nilai,h.files,h.status,h.noPembahasan,h.volx,h.satx,h.nilaix,
-                        h.tahun,(h.vol*h.nilai) as total,h.kdMember,h.perkada,h.keteranganx,h.statusx as keterangan,
+                        h.tahun,(h.vol*h.nilai) as total,h.kdMember,h.perkada,h.keteranganx,h.statusx as keterangan,h.statusPendanaan,
                     i.kdSub,i.nmSub
                 from apbdsub1 a 
-                join apbdsub2 b on
+                LEFT join apbdsub2 b on
                     a.kdSub1=b.kdSub1
                     and b.noPembahasan2=a.noPembahasan1
                     and b.date2=a.date1
-                join apbdsub3 c on
+                LEFT join apbdsub3 c on
                     c.kdSub2=b.kdSub2
                     and c.noPembahasan3=b.noPembahasan2
                     and c.date3=b.date2
@@ -1228,7 +1240,7 @@
                             where noPembahasan".($no+6)."=".$this->_checkStringQuery($noBandingan)." and perkada".($no+6)."=".$this->_checkStringQuery($perkada)." and date".($no+6)."=".$this->_checkStringQuery($tahun)." and kdSub".($no+6)."=g.kdSub".($no+6)."
                         )as pagu".($no+6)."1
                 from apbdsub1 a 
-                join apbdsub2 b on  
+                left join apbdsub2 b on  
                     a.kdSub1=b.kdSub1 and
                     a.noPembahasan1=b.noPembahasan2 and
                     a.perkada1=b.perkada2 and

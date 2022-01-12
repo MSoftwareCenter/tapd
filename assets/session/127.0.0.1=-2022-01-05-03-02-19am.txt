@@ -1,1 +1,0 @@
-{"kdMember":"2G18-memb-4","nmMember":"Admin","kdJabatan":"4","kdDinas":"4-10-00-001","nmDinas":"SEKRETARIAT DAERAH","username":"M3-Sekretariat TAPD","password":"aaa","tahun":"2021","noPembahasan":"1","progres":"0","finals":"0","files":"assets\/upload\/files\/Input RKA 2021-2022-01-01-10-29-55am.pdf","perkada":"1"}
