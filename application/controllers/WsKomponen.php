@@ -915,7 +915,8 @@ class WsKomponen extends CI_Controller {
         $this->_['xxx']=$xxx;
         $this->_['qlab']=$this->qdata->_xxx(base64_encode($xxx));
 
-        $where=" and a.perkada='".$perkada."' and d.status='terarsipkan'";
+        $where=" and a.perkada='".$perkada."' "; // terarsipkan dihilangkan karena menimbulkan data yang nambah ditengah jalan tidak ditampilkan
+        // $where=" and a.perkada='".$perkada."' and d.status='terarsipkan'";
         // return print_r($this->kdJabatan);
         if($this->kdJabatan==2 || $this->kdJabatan==6){
             $where=" and a.perkada='".$this->perkada."' ";
