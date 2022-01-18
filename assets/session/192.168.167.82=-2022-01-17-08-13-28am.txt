@@ -1,0 +1,1 @@
+{"kdMember":"2G18-memb-2","nmMember":"admin1","kdJabatan":"4","kdDinas":"4-10-00-001","nmDinas":"SEKRETARIAT DAERAH","username":"AP1-admin1","password":"aaa","tahun":"2022","noPembahasan":"1","progres":"1","finals":"0","files":"","perkada":"1"}

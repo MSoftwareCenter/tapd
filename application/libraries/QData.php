@@ -614,7 +614,7 @@
             return "select tahun as value, tahun as valueName from pembahasan ".$where." GROUP BY  tahun";
         }
         function _perkadaPembahasan($where){
-            return "select perkada as value, perkada as valueName from pembahasan where ".$where." group by perkada,noPembahasan order by perkada asc";
+            return "select perkada as value, perkada as valueName from pembahasan where ".$where." group by perkada order by perkada asc";
         }
         function _noPembahasan1($where){ // ini tabel pembahasan
             return "select noPembahasan as value, noPembahasan as valueName from pembahasan where ".$where." order by noPembahasan asc";
